@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Happiness Score</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌈 Your Probable Happiness Score</h1>
+        <div class="score-box">{{ score }}/100</div>
+        <p class="tip">{{ tip }}</p>
+        
+        {% if logged %}
+            <p class="success">✅ Score logged! Check trends at <a href="/logs">/logs</a>.</p>
+        {% endif %}
+        
+        <a href="/">Take Quiz Again</a> | <a href="/logs">View Logs</a>
+    </div>
+</body>
+</html>
