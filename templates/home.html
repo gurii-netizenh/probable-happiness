@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg mood-card">
+      <div class="card-header text-center">
+        <h2><i class="fas fa-brain"></i> Daily Happiness Quiz</h2>
+        <p class="text-muted">
+          Answer honestly to uncover your probable happiness score. Based on
+          positive psychology insights.
+        </p>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            <label class="form-label">{{ form.sleep.label }}</label>
+            {{ form.sleep(class="form-control", placeholder="e.g., 7") }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ form.exercise.label }}</label>
+            {{ form.exercise(class="form-control", placeholder="1-5") }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ form.connections.label }}</label>
+            {{ form.connections(class="form-control", placeholder="1-5") }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ form.gratitude.label }}</label>
+            {{ form.gratitude(class="form-control", placeholder="1-5") }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ form.overall.label }}</label>
+            {{ form.overall(class="form-control", placeholder="1-10") }}
+          </div>
+          <div class="mb-3 form-check">
+            {{ form.log(class="form-check-input") }} {{
+            form.log.label(class="form-check-label") }}
+          </div>
+          {{ form.submit(class="btn btn-success w-100") }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
