@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happiness Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Your Happiness Trends</h1>
+        <p>Average score: {{ "%.1f"|format(avg) }}/100</p>
+        
+        {% if logs %}
+            <table>
+                <tr><th>Score</th><th>Date (Day of Year)</th></tr>
+                {% for entry in logs %}
+                    <tr><td>{{ entry.score }}</td><td>{{ entry.date }}</td></tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No logs yet—start quizzing! 😊</p>
+        {% endif %}
+        
+        <a href="/">Back to Quiz</a>
+    </div>
+</body>
+</html>
