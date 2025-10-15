@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow-lg">
+      <div class="card-header">
+        <h5><i class="fas fa-users"></i> Users</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          {% for user in users %}
+          <li class="list-group-item d-flex justify-content-between">
+            {{ user.username }} ({{ user.email }})
+            <span
+              class="badge bg-{{ 'info' if user.role == 'user' else 'warning' }}"
+              >{{ user.role }}</span
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-lg">
+      <div class="card-header">
+        <h5><i class="fas fa-database"></i> Global Logs</h5>
+      </div>
+      <div class="card-body">
+        <p>Total Entries: {{ logs|length }}</p>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for log in logs[-10:] %}
+            <tr>
+              <td>{{ log.user_id }}</td>
+              <td>{{ log.score }}</td>
+              <td>{{ log.date.strftime('%Y-%m-%d') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

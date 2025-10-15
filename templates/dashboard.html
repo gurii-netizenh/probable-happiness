@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header">
+        <h5><i class="fas fa-tachometer-alt"></i> Quick Overview</h5>
+      </div>
+      <div class="card-body">
+        <p>Your average recent score: <strong>{{ avg }}/100</strong></p>
+        <a href="{{ url_for('quiz') }}" class="btn btn-success"
+          >Take Quick Quiz</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-lg">
+      <div class="card-header">
+        <h6><i class="fas fa-history"></i> Recent Scores</h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for log in logs %}
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          {{ log.date }}: {{ log.score }}
+          <span
+            class="badge bg-{{ 'success' if log.score > 70 else 'warning' if log.score > 40 else 'danger' }} rounded-pill"
+            >{{ log.score }}/100</span
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
